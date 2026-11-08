@@ -2,7 +2,10 @@
 
 A cozy desktop day planner for Linux and Windows. Check in with your energy, water, food and feelings, focus with a Pomodoro timer tied to your to-do list, and plan the week ahead.
 
-![MyDay check-ins](docs/screenshots/checkins.png)
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="docs/screenshots/checkins-light.png">
+  <img alt="MyDay check-ins tab" src="docs/screenshots/checkins-dark.png">
+</picture>
 
 ## Features
 
@@ -17,23 +20,50 @@ A daily overview of tasks done, focus time, water and meals.
 - **Meals**: log what you ate, with an optional meal-time reminder.
 - **Pom history**: today's focus sessions.
 
-See the screenshot at the top of this page.
+| Dark | Light |
+|:---:|:---:|
+| ![Check-ins tab, dark theme](docs/screenshots/checkins-dark.png) | ![Check-ins tab, light theme](docs/screenshots/checkins-light.png) |
 
 ### Work
 
-A Pomodoro timer next to today's to-do list. Press ▶ on a task to start a focus session on it.
+A Pomodoro timer next to today's to-do list.
 - Each task has an energy level and an estimate of how many pomodoros it will take.
 - Tasks that match your energy today are highlighted.
 - Unfinished tasks roll over to the next day.
-- You get a desktop notification when a session or break ends.
 
-![MyDay work tab](docs/screenshots/work.png)
+| Dark | Light |
+|:---:|:---:|
+| ![Work tab, dark theme](docs/screenshots/work-dark.png) | ![Work tab, light theme](docs/screenshots/work-light.png) |
+
+#### During a focus session
+
+Press ▶ on a task, then **Start**. The flower wreath grows as the session goes on. You can note what you're working on, which is saved with the session in Pom history. You can also choose to mark the task done when the session ends.
+
+| Dark | Light |
+|:---:|:---:|
+| ![Pomodoro timer mid-session, dark theme](docs/screenshots/focus-dark.png) | ![Pomodoro timer mid-session, light theme](docs/screenshots/focus-light.png) |
+
+#### Notifications
+
+MyDay sends a desktop notification:
+- when a focus session ends,
+- when a break ends,
+- at your water reminder interval,
+- at your meal-reminder time.
+
+The cards below show the exact text the app sends. The style of the notification itself depends on your operating system.
+
+| Dark | Light |
+|:---:|:---:|
+| ![Pomodoro and water reminder notifications, dark theme](docs/screenshots/notification-dark.png) | ![Pomodoro and water reminder notifications, light theme](docs/screenshots/notification-light.png) |
 
 ### Week Planner
 
 A rolling 7-day board starting today. Add tasks to any day and see each one's pomodoro progress.
 
-![MyDay week planner](docs/screenshots/week.png)
+| Dark | Light |
+|:---:|:---:|
+| ![Week Planner tab, dark theme](docs/screenshots/week-dark.png) | ![Week Planner tab, light theme](docs/screenshots/week-light.png) |
 
 ## Install
 
@@ -76,7 +106,7 @@ npm install
 npm run desktop      # build the UI and open the desktop app
 npm run dev          # UI only, in the browser with hot reload (saves to localStorage)
 npm run typecheck    # TypeScript + Electron main-process checks
-npm run screenshots  # regenerate docs/screenshots/*.png using sample data
+npm run screenshots  # regenerate docs/screenshots/*.png (dark + light) from sample data
 ```
 
 On Linux, `npm run update-app` (or `bash update-app.sh --run`) runs the checks, rebuilds, and can launch the app.
