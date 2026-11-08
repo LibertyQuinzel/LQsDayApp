@@ -1,0 +1,84 @@
+{
+  "name": "myday",
+  "productName": "MyDay",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A cozy daily planner: todos, pomodoro, water, food and energy tracking.",
+  "author": {
+    "name": "Swechcha",
+    "email": "libertyquinzel@gmail.com"
+  },
+  "type": "module",
+  "main": "src/electron/main.cjs",
+  "scripts": {
+    "dev": "vite --config src/vite.config.ts --host 0.0.0.0",
+    "desktop": "npm run build && npm run electron",
+    "electron": "node scripts/run-electron.cjs",
+    "build": "vite build --config src/vite.config.ts",
+    "update-app": "bash update-app.sh",
+    "preview": "vite preview --config src/vite.config.ts --host 0.0.0.0",
+    "typecheck": "tsc --project src/tsconfig.json && node --check src/electron/main.cjs",
+    "dist": "npm run typecheck && npm run build && electron-builder",
+    "dist:linux": "npm run typecheck && npm run build && electron-builder --linux",
+    "dist:win": "npm run typecheck && npm run build && electron-builder --win"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@fontsource-variable/nunito": "^5.3.0",
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "date-fns": "^4.1.0",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  },
+  "build": {
+    "appId": "com.libertyq.day",
+    "productName": "MyDay",
+    "artifactName": "myday-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "package.json",
+      "src/electron/**/*",
+      "src/dist/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "src/electron/icon.png",
+      "executableName": "myday",
+      "desktop": {
+        "StartupWMClass": "myday"
+      }
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "src/electron/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true
+    }
+  }
+}

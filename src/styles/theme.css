@@ -1,0 +1,158 @@
+/* Dark is the default; [data-theme] on <html> is set from the user's choice (System, Light, Dark). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+  color-scheme: dark;
+  --background: #05030a;
+  --foreground: #f3eefc;
+  --card: rgba(22, 15, 36, 0.78);
+  --primary: #a78bfa;
+  --primary-foreground: #1a0b2e;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --muted: rgba(255, 255, 255, 0.09);
+  --muted-foreground: #a59cb8;
+  --destructive: #fb7185;
+  --border: rgba(196, 181, 253, 0.16);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #a78bfa;
+  --energy-low: #7dd3fc;
+  --energy-medium: #fcd34d;
+  --energy-high: #fda4af;
+  /* Menus and toasts that float above cards */
+  --raised: #1d1430;
+  /* Task tiles inside planner columns */
+  --tile: rgba(255, 255, 255, 0.05);
+  --tile-hover: rgba(255, 255, 255, 0.1);
+  --radius: 0.75rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --background: #ddd4ea;
+  --foreground: #1f1530;
+  --card: rgba(238, 232, 246, 0.82);
+  --primary: #6d28d9;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(91, 33, 182, 0.07);
+  --muted: rgba(91, 33, 182, 0.12);
+  --muted-foreground: #5f5574;
+  --destructive: #be123c;
+  --border: rgba(109, 40, 217, 0.18);
+  --input: rgba(250, 248, 253, 0.6);
+  --ring: #7c3aed;
+  --energy-low: #0369a1;
+  --energy-medium: #a16207;
+  --energy-high: #be123c;
+  --raised: #f4f0f9;
+  --tile: rgba(250, 248, 253, 0.6);
+  --tile-hover: rgba(250, 248, 253, 0.9);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-energy-low: var(--energy-low);
+  --color-energy-medium: var(--energy-medium);
+  --color-energy-high: var(--energy-high);
+  --color-raised: var(--raised);
+  --color-tile: var(--tile);
+  --color-tile-hover: var(--tile-hover);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Shared card surface: translucent so the flowers frame the content. */
+@utility panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px);
+}
+
+/* Cooking pot (meal reminder) */
+@keyframes pot-simmer {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-1.6deg) translateY(-0.6px); }
+  75% { transform: rotate(1.6deg) translateY(-0.6px); }
+}
+
+@keyframes lid-rattle {
+  0%, 78%, 100% { transform: translateY(0) rotate(0deg); }
+  82% { transform: translateY(-2.5px) rotate(-2.5deg); }
+  86% { transform: translateY(0) rotate(0deg); }
+  90% { transform: translateY(-1.5px) rotate(2deg); }
+  94% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1); opacity: 0.95; }
+  50% { transform: scaleY(0.72); opacity: 0.75; }
+}
+
+@keyframes steam-rise {
+  0% { transform: translateY(6px) scale(0.85); opacity: 0; }
+  30% { opacity: 0.85; }
+  100% { transform: translateY(-16px) scale(1.15); opacity: 0; }
+}
+
+@keyframes water-wave {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito Variable', ui-rounded, system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Without the rising animation, show the pot's steam as still wisps. */
+  .pot-steam {
+    opacity: 0.7 !important;
+  }
+}
