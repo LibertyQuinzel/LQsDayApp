@@ -20,7 +20,8 @@
     "typecheck": "tsc --project src/tsconfig.json && node --check src/electron/main.cjs",
     "dist": "npm run typecheck && npm run build && electron-builder",
     "dist:linux": "npm run typecheck && npm run build && electron-builder --linux",
-    "dist:win": "npm run typecheck && npm run build && electron-builder --win"
+    "dist:win": "npm run typecheck && npm run build && electron-builder --win",
+    "screenshots": "npm run build && node scripts/run-electron.cjs scripts/screenshots.cjs"
   },
   "dependencies": {},
   "devDependencies": {

@@ -2,13 +2,38 @@
 
 A cozy desktop day planner for Linux and Windows. Check in with your energy, water, food and feelings, focus with a Pomodoro timer tied to your to-do list, and plan the week ahead.
 
+![MyDay check-ins](docs/screenshots/checkins.png)
+
 ## Features
 
-- **Check-ins**: a daily overview with an energy planner that suggests what kind of work suits your energy today, plus water, food and feelings tracking.
-- **Work**: a to-do list paired with a Pomodoro timer, a history of your focus sessions, and desktop notifications when a session ends.
-- **Week planner**: lay out tasks across the days of the week.
-- Light and dark themes.
-- Works offline. Your data stays on your computer.
+Light and dark themes are included (or match your system), and everything works offline. Your data stays on your computer.
+
+### Check-ins
+
+A daily overview of tasks done, focus time, water and meals.
+- **Energy**: rate your energy from 1 to 5. MyDay suggests how to approach the day and which of today's tasks are a good fit.
+- **Feelings**: jot down how you feel physically and mentally.
+- **Water**: a daily goal, plus reminders to drink.
+- **Meals**: log what you ate, with an optional meal-time reminder.
+- **Pom history**: today's focus sessions.
+
+See the screenshot at the top of this page.
+
+### Work
+
+A Pomodoro timer next to today's to-do list. Press ▶ on a task to start a focus session on it.
+- Each task has an energy level and an estimate of how many pomodoros it will take.
+- Tasks that match your energy today are highlighted.
+- Unfinished tasks roll over to the next day.
+- You get a desktop notification when a session or break ends.
+
+![MyDay work tab](docs/screenshots/work.png)
+
+### Week Planner
+
+A rolling 7-day board starting today. Add tasks to any day and see each one's pomodoro progress.
+
+![MyDay week planner](docs/screenshots/week.png)
 
 ## Install
 
@@ -51,6 +76,7 @@ npm install
 npm run desktop      # build the UI and open the desktop app
 npm run dev          # UI only, in the browser with hot reload (saves to localStorage)
 npm run typecheck    # TypeScript + Electron main-process checks
+npm run screenshots  # regenerate docs/screenshots/*.png using sample data
 ```
 
 On Linux, `npm run update-app` (or `bash update-app.sh --run`) runs the checks, rebuilds, and can launch the app.
@@ -63,7 +89,8 @@ src/
   electron/     Electron main process, preload bridge, app icon
   styles/       Tailwind + theme CSS
   index.html    Vite entry
-scripts/        Cross-platform helper scripts
+scripts/        Cross-platform helper scripts (dev launcher, screenshot capture)
+docs/           README screenshots
 .github/        CI workflow that builds the release installers
 ```
 

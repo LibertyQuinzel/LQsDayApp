@@ -7,7 +7,11 @@ const electronPath = require('electron');
 const env = { ...process.env };
 delete env.ELECTRON_RUN_AS_NODE;
 
-const child = spawn(electronPath, [path.join(__dirname, '..'), ...process.argv.slice(2)], {
+// An optional first argument that isn't a flag picks a different entry script (e.g. scripts/screenshots.cjs).
+const args = process.argv.slice(2);
+const entry = args[0] && !args[0].startsWith('-') ? args.shift() : path.join(__dirname, '..');
+
+const child = spawn(electronPath, [entry, ...args], {
   stdio: 'inherit',
   env
 });
